@@ -19,7 +19,9 @@ class Capture extends React.Component {
       value: "",
       isExpense: true
     }
+
     this.createChangeHandler = this.createChangeHandler.bind(this)
+    this.resetInput = this.resetInput.bind(this)
   }
   createChangeHandler(val) {
     return (e) => {
@@ -27,6 +29,13 @@ class Capture extends React.Component {
       newState[val] = e.target.value
       this.setState(newState)
     }
+  }
+  resetInput() {
+    this.setState({
+      description: "",
+      value: "",
+      isExpense: true
+    })
   }
   render() {
     return (
@@ -40,7 +49,12 @@ class Capture extends React.Component {
           onChange={ this.createChangeHandler("value") }
           value={this.state.value}>
         </Input>
-        <Button onClick={(e) => this.props.addTransaction(this.state)}>Add</Button>
+        <Button onClick={(e) => {
+            this.props.addTransaction(this.state)
+            this.resetInput()
+          }}>
+          Add
+        </Button>
       </div>)
   }
 }
