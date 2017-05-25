@@ -40,7 +40,7 @@ class Capture extends React.Component {
           onChange={ this.createChangeHandler("value") }
           value={this.state.value}>
         </Input>
-        <Button>Add</Button>
+        <Button onClick={(e) => this.props.addTransaction(this.state)}>Add</Button>
       </div>)
   }
 }

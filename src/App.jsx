@@ -14,12 +14,21 @@ class App extends Component {
         {description: "salary", date: new Date(), type: "income", value: 996699},
       ]
     }
+
+    this.addTransaction = this.addTransaction.bind(this)
+  }
+  addTransaction({description, value, type}) {
+    this.setState((prevState, props) => {
+      let transactions = prevState.transactions
+      transactions.push({description, value, type, date: new Date()})
+      return {transactions};
+    })
   }
   render() {
     return (
       <div className="main-container">
         <div>
-          <Capture></Capture>
+          <Capture addTransaction={this.addTransaction}></Capture>
           <TransactionTable transactions={this.state.transactions}></TransactionTable>
         </div>
       </div>
