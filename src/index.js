@@ -8,7 +8,7 @@ import replikativ, {hashIt, toEdn, createUUID} from "replikativ";
 // initialize replikativ
 let user = "mail:alice@stechuhr.de";
 let ormapId = createUUID("07f6aae2-2b46-4e44-bfd8-058d13977a8a");
-let uri = "ws://localhost:31778";
+let uri = "ws://127.0.0.1:31778";
 
 let globalProps = {aptures: []};
 
