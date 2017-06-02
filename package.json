@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "replikativ": "0.2.6"
+    "replikativ": "file:../replikativ/npm",
+    "websocket": "^1.0.24"
   },
   "devDependencies": {
     "react-scripts": "1.0.3"
