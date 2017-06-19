@@ -12,7 +12,7 @@ const replica = createReplica();
 
 
 function createEvalFns(component)  {
-  return {"add": (old, params) => {
+  return {"add": (supervisor, old, params) => {
     const transactions = old.transactions;
     transactions.push(params);
     component.setState({transactions});
