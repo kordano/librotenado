@@ -8,11 +8,9 @@ import "./App.css"
 const user = "mail:alice@stechuhr.de";
 const ormapId = createUUID("07f6aae2-2b46-4e44-bfd8-058d13977a8a");
 const uri = "ws://localhost:31778";
-const replica = createReplica();
-
 
 function createEvalFns(component)  {
-  return {"add": (supervisor, old, params) => {
+  return {"add": function(supervisor, old, params) {
     const transactions = old.transactions;
     transactions.push(params);
     component.setState({transactions});
@@ -24,16 +22,10 @@ function logError(err) {
   console.log(err);
 }
 
-function checkIt(value) {
-  replikativ.associate(replica.stage, user, ormapId, hashIt(toEdn(value)), [["add", value]]).then(function() {
-    console.log("associated with " + JSON.stringify(value));
-  }, logError);
-}
 
 function createReplica(evalFns) {
   var replica = {
-    state: {transactions: []},
-    checkIt
+    state: {transactions: []}
   };
   replikativ.newMemStore().then(function(store) {
     replica.store = store;
@@ -75,6 +67,7 @@ class App extends Component {
     }, logError);
   }
   render() {
+    console.info(this.state.replica.state)
     return (
       <div className="main-container">
         <div>
